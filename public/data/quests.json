@@ -1,0 +1,162 @@
+{
+  "quests": [
+    {
+      "id": "main_xmetal_synthesis",
+      "title": "Synthesize X-metal",
+      "giver": "martin_crane",
+      "type": "main",
+      "act": 1,
+      "description": "Martin Crane has discovered the formula for X-metal synthesis. Gather the three components and synthesize the first X-metal sample.",
+      "objectives": [
+        {
+          "id": "gather_exotic",
+          "type": "collect",
+          "description": "Gather exotic matter from the research facility",
+          "target": "exotic_matter",
+          "required": 1,
+          "completed": false
+        },
+        {
+          "id": "gather_catalyst",
+          "type": "collect",
+          "description": "Obtain energy catalysts from the power grid",
+          "target": "energy_catalyst",
+          "required": 2,
+          "completed": false
+        },
+        {
+          "id": "use_workbench",
+          "type": "interact",
+          "description": "Use the synthesis workbench to create X-metal",
+          "target": "synthesis_workbench",
+          "completed": false
+        }
+      ],
+      "rewards": {
+        "xp": 500,
+        "credits": 200,
+        "items": [
+          { "id": "xmetal_sample", "quantity": 1 },
+          { "id": "blueprint_skylark_v1", "quantity": 1 }
+        ],
+        "reputation": { "human_science": 50 }
+      },
+      "nextQuestId": "main_build_skylark"
+    },
+    {
+      "id": "main_build_skylark",
+      "title": "Build the Skylark Spacecraft",
+      "giver": "martin_crane",
+      "type": "main",
+      "act": 1,
+      "description": "With X-metal in hand, we can build the Skylark. Gather materials and construct the ship.",
+      "objectives": [
+        {
+          "id": "gather_metals",
+          "type": "collect",
+          "description": "Collect rare metals for the hull",
+          "target": "rare_metal",
+          "required": 5,
+          "completed": false
+        },
+        {
+          "id": "gather_crystals",
+          "type": "collect",
+          "description": "Find energy crystals for the reactor",
+          "target": "energy_crystal",
+          "required": 3,
+          "completed": false
+        },
+        {
+          "id": "activate_skylark",
+          "type": "interact",
+          "description": "Activate the Skylark's systems",
+          "target": "skylark_control_panel",
+          "completed": false
+        }
+      ],
+      "rewards": {
+        "xp": 1000,
+        "credits": 500,
+        "items": [
+          { "id": "xmetal_beam_weapon", "quantity": 1 },
+          { "id": "personal_shield_device", "quantity": 1 }
+        ],
+        "reputation": { "human_science": 100 }
+      },
+      "nextQuestId": "main_explore_alien_world"
+    },
+    {
+      "id": "main_explore_alien_world",
+      "title": "Explore Zylor Prime",
+      "giver": "dorothy_vaneman",
+      "type": "main",
+      "act": 1,
+      "description": "Use the Skylark to reach the alien world of Zylor Prime. Discover what civilization built those energy signatures.",
+      "objectives": [
+        {
+          "id": "reach_zylor",
+          "type": "travel",
+          "description": "Travel to Zylor Prime via the Skylark",
+          "target": "alien_world_1",
+          "completed": false
+        },
+        {
+          "id": "explore_ruins",
+          "type": "explore",
+          "description": "Explore the ancient ruins",
+          "target": "alien_world_1",
+          "completed": false
+        },
+        {
+          "id": "find_artifact",
+          "type": "collect",
+          "description": "Find an artifact of the ancient civilization",
+          "target": "ancient_artifact",
+          "required": 1,
+          "completed": false
+        }
+      ],
+      "rewards": {
+        "xp": 1500,
+        "credits": 750,
+        "items": [
+          { "id": "alien_tech_translator", "quantity": 1 }
+        ],
+        "reputation": { "human_science": 150 }
+      }
+    },
+    {
+      "id": "side_research_data",
+      "title": "Gather Research Data",
+      "giver": "dorothy_vaneman",
+      "type": "side",
+      "act": 1,
+      "description": "Dorothy needs additional data readings from the laboratory equipment for her analysis.",
+      "objectives": [
+        {
+          "id": "scan_device_1",
+          "type": "interact",
+          "description": "Scan data from laboratory terminal 1",
+          "target": "lab_terminal_1",
+          "completed": false
+        },
+        {
+          "id": "scan_device_2",
+          "type": "interact",
+          "description": "Scan data from laboratory terminal 2",
+          "target": "lab_terminal_2",
+          "completed": false
+        }
+      ],
+      "rewards": {
+        "xp": 200,
+        "credits": 100,
+        "items": [
+          { "id": "analysis_report", "quantity": 1 }
+        ],
+        "reputation": { "human_science": 25 }
+      }
+    }
+  ]
+}

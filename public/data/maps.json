@@ -1,0 +1,236 @@
+{
+  "maps": [
+    {
+      "id": "earth_base",
+      "name": "Earth Research Base",
+      "type": "interior",
+      "width": 20,
+      "height": 20,
+      "description": "The secret underground facility where X-metal was discovered.",
+      "tileData": [
+        ["w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w"],
+        ["w", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "w"],
+        ["w", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "w"],
+        ["w", "f", "f", "d", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "w"],
+        ["w", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "w"],
+        ["w", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "w"],
+        ["w", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "w"],
+        ["w", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "w"],
+        ["w", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "w"],
+        ["w", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "w"],
+        ["w", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "w"],
+        ["w", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "w"],
+        ["w", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "w"],
+        ["w", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "w"],
+        ["w", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "w"],
+        ["w", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "w"],
+        ["w", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "w"],
+        ["w", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "w"],
+        ["w", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "w"],
+        ["w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w"]
+      ],
+      "objects": [
+        {
+          "id": "martin_crane_spawn",
+          "type": "npc_spawn",
+          "x": 7,
+          "y": 6,
+          "npcId": "martin_crane"
+        },
+        {
+          "id": "dorothy_spawn",
+          "type": "npc_spawn",
+          "x": 8,
+          "y": 7,
+          "npcId": "dorothy_vaneman"
+        },
+        {
+          "id": "merchant_spawn",
+          "type": "npc_spawn",
+          "x": 10,
+          "y": 8,
+          "npcId": "merchant_trader"
+        },
+        {
+          "id": "synthesis_workbench",
+          "type": "workbench",
+          "x": 14,
+          "y": 10,
+          "name": "X-metal Synthesis Workbench",
+          "recipes": ["xmetal_synthesis"]
+        },
+        {
+          "id": "lab_terminal_1",
+          "type": "terminal",
+          "x": 12,
+          "y": 5,
+          "name": "Laboratory Terminal 1",
+          "data": "Research data logged and available"
+        },
+        {
+          "id": "lab_terminal_2",
+          "type": "terminal",
+          "x": 16,
+          "y": 5,
+          "name": "Laboratory Terminal 2",
+          "data": "Additional research data logged"
+        },
+        {
+          "id": "storage_chest",
+          "type": "chest",
+          "x": 18,
+          "y": 15,
+          "name": "Storage Chest",
+          "items": [
+            { "id": "energy_catalyst", "quantity": 2 },
+            { "id": "rare_metal", "quantity": 1 }
+          ]
+        },
+        {
+          "id": "exit_to_alien_world",
+          "type": "door_locked",
+          "x": 3,
+          "y": 3,
+          "name": "Exit (Requires Skylark)",
+          "requiresItem": "blueprint_skylark_v1",
+          "targetMap": "alien_world_1",
+          "targetX": 5,
+          "targetY": 5
+        }
+      ],
+      "enemies": [
+        {
+          "id": "drone_1",
+          "type": "flying_drone",
+          "x": 15,
+          "y": 12,
+          "patrol": true,
+          "patrolPath": [[15, 12], [16, 12], [16, 13], [15, 13]]
+        },
+        {
+          "id": "sentinel_1",
+          "type": "robot_sentinel",
+          "x": 11,
+          "y": 15,
+          "patrol": true,
+          "patrolPath": [[11, 15], [12, 15], [12, 14], [11, 14]]
+        }
+      ]
+    },
+    {
+      "id": "alien_world_1",
+      "name": "Zylor Prime",
+      "type": "outdoor",
+      "width": 25,
+      "height": 25,
+      "description": "An alien jungle world covered in crystalline vegetation and ancient ruins of a long-dead civilization.",
+      "tileData": [
+        ["r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r"],
+        ["r", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "r", "r"],
+        ["r", "g", "g", "g", "g", "g", "g", "g", "r", "r", "r", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "r", "r"],
+        ["r", "g", "g", "r", "r", "g", "g", "g", "r", "r", "r", "g", "g", "g", "g", "g", "g", "g", "r", "r", "r", "g", "g", "r", "r"],
+        ["r", "g", "g", "g", "g", "g", "g", "g", "r", "r", "r", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "r", "r"],
+        ["r", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "r", "r"],
+        ["r", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "r", "r"],
+        ["r", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "r", "r"],
+        ["r", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "r", "r"],
+        ["r", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "r", "r"],
+        ["r", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "r", "r"],
+        ["r", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "r", "r"],
+        ["r", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "r", "r"],
+        ["r", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "r", "r"],
+        ["r", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "r", "r"],
+        ["r", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "r", "r"],
+        ["r", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "r", "r"],
+        ["r", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "r", "r"],
+        ["r", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "r", "r"],
+        ["r", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "r", "r"],
+        ["r", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "r", "r"],
+        ["r", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "r", "r"],
+        ["r", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "r", "r"],
+        ["r", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "r", "r"],
+        ["r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r"]
+      ],
+      "objects": [
+        {
+          "id": "ancient_temple",
+          "type": "structure",
+          "x": 12,
+          "y": 12,
+          "name": "Ancient Temple",
+          "description": "A crumbling structure from an ancient civilization"
+        },
+        {
+          "id": "artifact_pedestal",
+          "type": "pedestal",
+          "x": 13,
+          "y": 12,
+          "name": "Ancient Artifact",
+          "itemId": "ancient_artifact",
+          "requiresInteraction": true
+        },
+        {
+          "id": "crystal_formation",
+          "type": "resource_node",
+          "x": 8,
+          "y": 15,
+          "name": "Crystal Formation",
+          "resourceType": "energy_crystal",
+          "quantity": 3
+        },
+        {
+          "id": "metal_deposit",
+          "type": "resource_node",
+          "x": 18,
+          "y": 8,
+          "name": "Metal Ore Deposit",
+          "resourceType": "rare_metal",
+          "quantity": 2
+        },
+        {
+          "id": "exit_to_earth",
+          "type": "door",
+          "x": 5,
+          "y": 5,
+          "name": "Return to Earth",
+          "targetMap": "earth_base",
+          "targetX": 3,
+          "targetY": 3
+        }
+      ],
+      "enemies": [
+        {
+          "id": "scout_1",
+          "type": "chloran_scout",
+          "x": 10,
+          "y": 10,
+          "patrol": true,
+          "patrolPath": [[10, 10], [11, 10], [12, 10], [11, 10]]
+        },
+        {
+          "id": "scout_2",
+          "type": "chloran_scout",
+          "x": 18,
+          "y": 12,
+          "patrol": true,
+          "patrolPath": [[18, 12], [19, 12], [20, 12], [19, 12]]
+        },
+        {
+          "id": "beast_1",
+          "type": "crystalline_beast",
+          "x": 14,
+          "y": 8,
+          "patrol": true,
+          "patrolPath": [[14, 8], [15, 8], [14, 7], [13, 7]]
+        }
+      ]
+    }
+  ],
+  "tileTypes": {
+    "f": { "name": "floor", "walkable": true, "color": "#664d33" },
+    "w": { "name": "wall", "walkable": false, "color": "#330000" },
+    "d": { "name": "door", "walkable": true, "color": "#8b6914" },
+    "g": { "name": "grass", "walkable": true, "color": "#2d5016" },
+    "r": { "name": "rock", "walkable": false, "color": "#555555" }
+  }
+}

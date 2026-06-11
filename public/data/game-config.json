@@ -1,0 +1,47 @@
+{
+  "title": "Skylark ARPG",
+  "version": "1.0.0",
+  "author": "Based on E.E. Smith's Skylark novels",
+  "startMap": "earth_base",
+  "startPosition": { "x": 5, "y": 5 },
+  "factions": [
+    {
+      "id": "human_science",
+      "name": "Human Science Council",
+      "description": "Explorers and scientists from Earth",
+      "alignment": "neutral"
+    },
+    {
+      "id": "alien_empire",
+      "name": "Chloran Empire",
+      "description": "Ancient alien civilization",
+      "alignment": "hostile"
+    },
+    {
+      "id": "traders",
+      "name": "Free Traders",
+      "description": "Independent merchants",
+      "alignment": "neutral"
+    }
+  ],
+  "acts": [
+    {
+      "id": "act1",
+      "title": "Discovery of X-metal",
+      "description": "Richard Seaton discovers X-metal and builds the first Skylark spacecraft",
+      "maps": ["earth_base", "alien_world_1"]
+    },
+    {
+      "id": "act2",
+      "title": "First Contact",
+      "description": "Encounter with the Chloran Empire",
+      "maps": ["space_station", "chloran_outpost"]
+    },
+    {
+      "id": "act3",
+      "title": "Escalation",
+      "description": "War with advancing alien forces",
+      "maps": ["nebula_research", "war_zone"]
+    }
+  ]
+}

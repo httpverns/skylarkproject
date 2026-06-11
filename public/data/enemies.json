@@ -1,0 +1,177 @@
+{
+  "enemies": [
+    {
+      "id": "robot_sentinel",
+      "name": "Automated Sentinel",
+      "type": "construct",
+      "level": 3,
+      "health": 40,
+      "mana": 0,
+      "stats": {
+        "strength": 7,
+        "intelligence": 5,
+        "dexterity": 8,
+        "endurance": 10
+      },
+      "attacks": [
+        {
+          "id": "laser_burst",
+          "name": "Laser Burst",
+          "type": "ranged",
+          "damage": 12,
+          "range": 8,
+          "cooldown": 1.5,
+          "accuracy": 0.85
+        }
+      ],
+      "loot": [
+        { "id": "energy_catalyst", "dropChance": 0.4, "quantity": 1 },
+        { "id": "rare_metal", "dropChance": 0.3, "quantity": 1 }
+      ],
+      "xp": 150,
+      "ai": {
+        "behavior": "aggressive",
+        "range": 15,
+        "retreatHealth": 0.2
+      }
+    },
+    {
+      "id": "chloran_scout",
+      "name": "Chloran Scout",
+      "type": "alien",
+      "level": 5,
+      "health": 60,
+      "mana": 30,
+      "stats": {
+        "strength": 8,
+        "intelligence": 9,
+        "dexterity": 10,
+        "endurance": 7
+      },
+      "attacks": [
+        {
+          "id": "energy_bolt",
+          "name": "Energy Bolt",
+          "type": "ranged",
+          "damage": 15,
+          "range": 10,
+          "cooldown": 2.0,
+          "accuracy": 0.8
+        },
+        {
+          "id": "plasma_discharge",
+          "name": "Plasma Discharge",
+          "type": "spell",
+          "damage": 20,
+          "range": 6,
+          "cooldown": 3.0,
+          "accuracy": 0.75,
+          "effect": "burn"
+        }
+      ],
+      "abilities": [
+        {
+          "id": "shield_burst",
+          "name": "Energy Shield",
+          "type": "defensive",
+          "defense": 10,
+          "cooldown": 4.0,
+          "duration": 3.0
+        }
+      ],
+      "loot": [
+        { "id": "energy_catalyst", "dropChance": 0.6, "quantity": 1 },
+        { "id": "xmetal_beam_weapon", "dropChance": 0.1, "quantity": 1 }
+      ],
+      "xp": 300,
+      "ai": {
+        "behavior": "tactical",
+        "range": 12,
+        "retreatHealth": 0.3,
+        "useAbilities": true
+      }
+    },
+    {
+      "id": "crystalline_beast",
+      "name": "Crystalline Beast",
+      "type": "creature",
+      "level": 4,
+      "health": 75,
+      "mana": 0,
+      "stats": {
+        "strength": 12,
+        "intelligence": 4,
+        "dexterity": 6,
+        "endurance": 11
+      },
+      "attacks": [
+        {
+          "id": "melee_slash",
+          "name": "Crystal Slash",
+          "type": "melee",
+          "damage": 18,
+          "range": 2,
+          "cooldown": 1.2,
+          "accuracy": 0.9
+        }
+      ],
+      "abilities": [
+        {
+          "id": "crystal_shards",
+          "name": "Crystal Shards",
+          "type": "spell",
+          "damage": 16,
+          "range": 6,
+          "cooldown": 2.5,
+          "accuracy": 0.8,
+          "effect": "bleed"
+        }
+      ],
+      "loot": [
+        { "id": "energy_crystal", "dropChance": 0.7, "quantity": 1 },
+        { "id": "rare_metal", "dropChance": 0.5, "quantity": 1 }
+      ],
+      "xp": 250,
+      "ai": {
+        "behavior": "aggressive",
+        "range": 8,
+        "retreatHealth": 0.15
+      }
+    },
+    {
+      "id": "flying_drone",
+      "name": "Patrol Drone",
+      "type": "construct",
+      "level": 2,
+      "health": 25,
+      "mana": 0,
+      "stats": {
+        "strength": 4,
+        "intelligence": 6,
+        "dexterity": 11,
+        "endurance": 5
+      },
+      "attacks": [
+        {
+          "id": "machine_gun",
+          "name": "Machine Gun",
+          "type": "ranged",
+          "damage": 8,
+          "range": 10,
+          "cooldown": 0.8,
+          "accuracy": 0.7
+        }
+      ],
+      "loot": [
+        { "id": "energy_catalyst", "dropChance": 0.3, "quantity": 1 }
+      ],
+      "xp": 100,
+      "ai": {
+        "behavior": "evasive",
+        "range": 12,
+        "retreatHealth": 0.4,
+        "kiteDistance": 8
+      }
+    }
+  ]
+}

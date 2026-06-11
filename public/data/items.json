@@ -1,0 +1,122 @@
+{
+  "weapons": [
+    {
+      "id": "xmetal_beam_weapon",
+      "name": "X-metal Beam Rifle",
+      "type": "energy_weapon",
+      "rarity": "rare",
+      "damage": 25,
+      "attackSpeed": 1.2,
+      "energyCost": 15,
+      "description": "A weapon powered by X-metal crystals. Fires concentrated beams of destructive energy.",
+      "effects": ["stun_chance:0.2"]
+    },
+    {
+      "id": "plasma_rifle",
+      "name": "Plasma Rifle",
+      "type": "energy_weapon",
+      "rarity": "common",
+      "damage": 15,
+      "attackSpeed": 1.0,
+      "energyCost": 10,
+      "description": "Standard issue plasma weapon."
+    },
+    {
+      "id": "energy_pistol",
+      "name": "Energy Pistol",
+      "type": "energy_weapon",
+      "rarity": "common",
+      "damage": 8,
+      "attackSpeed": 1.5,
+      "energyCost": 5,
+      "description": "Compact energy weapon, good for quick shots."
+    }
+  ],
+  "armor": [
+    {
+      "id": "personal_shield_device",
+      "name": "Personal Shield Device",
+      "type": "shield",
+      "rarity": "rare",
+      "defense": 15,
+      "energyCost": 2,
+      "regenRate": 5,
+      "description": "Advanced shield generator. Regenerates over time.",
+      "effects": ["energy_shield", "absorb_energy_attacks"]
+    },
+    {
+      "id": "reinforced_suit",
+      "name": "Reinforced EVA Suit",
+      "type": "armor",
+      "rarity": "common",
+      "defense": 8,
+      "description": "Standard exploration suit with minor impact resistance."
+    }
+  ],
+  "items": [
+    {
+      "id": "exotic_matter",
+      "name": "Exotic Matter",
+      "type": "material",
+      "rarity": "rare",
+      "description": "Rare matter with unusual properties. Component of X-metal synthesis.",
+      "stackable": true
+    },
+    {
+      "id": "energy_catalyst",
+      "name": "Energy Catalyst",
+      "type": "material",
+      "rarity": "uncommon",
+      "description": "Amplifies energy reactions. Required for X-metal synthesis.",
+      "stackable": true
+    },
+    {
+      "id": "rare_metal",
+      "name": "Rare Metal Ore",
+      "type": "material",
+      "rarity": "uncommon",
+      "description": "Pure rare metal refined from ore. Used in spacecraft construction.",
+      "stackable": true
+    },
+    {
+      "id": "energy_crystal",
+      "name": "Energy Crystal",
+      "type": "material",
+      "rarity": "uncommon",
+      "description": "Stores concentrated energy. Powers advanced systems.",
+      "stackable": true
+    },
+    {
+      "id": "xmetal_sample",
+      "name": "X-metal Sample",
+      "type": "key_item",
+      "rarity": "rare",
+      "description": "A precious sample of synthesized X-metal. The foundation of advanced technology.",
+      "stackable": false
+    },
+    {
+      "id": "blueprint_skylark_v1",
+      "name": "Skylark Blueprint V1",
+      "type": "key_item",
+      "rarity": "epic",
+      "description": "Complete blueprint for the first Skylark spacecraft design.",
+      "stackable": false
+    },
+    {
+      "id": "ancient_artifact",
+      "name": "Ancient Alien Artifact",
+      "type": "key_item",
+      "rarity": "epic",
+      "description": "An artifact from an ancient alien civilization. Extremely valuable for research.",
+      "stackable": false
+    },
+    {
+      "id": "alien_tech_translator",
+      "name": "Alien Tech Translator",
+      "type": "tool",
+      "rarity": "rare",
+      "description": "Device that can decipher alien technology and unlock secrets.",
+      "stackable": false
+    }
+  ]
+}

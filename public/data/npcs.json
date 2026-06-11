@@ -1,0 +1,144 @@
+{
+  "characters": [
+    {
+      "id": "richard_seaton",
+      "name": "Richard Seaton",
+      "role": "player",
+      "baseStats": {
+        "health": 100,
+        "mana": 50,
+        "strength": 8,
+        "intelligence": 12,
+        "dexterity": 10,
+        "endurance": 9
+      },
+      "skills": ["xmetal_beam", "shield_generator", "scan"]
+    }
+  ],
+  "npcs": [
+    {
+      "id": "martin_crane",
+      "name": "Martin Crane",
+      "faction": "human_science",
+      "role": "engineer",
+      "mapId": "earth_base",
+      "x": 7,
+      "y": 6,
+      "dialogue": {
+        "greeting": "Seaton! I've been waiting for you. The X-metal synthesis is ready.",
+        "dialogue_tree": [
+          {
+            "id": "greet",
+            "text": "Hello Martin! Any news?",
+            "responses": [
+              {
+                "text": "Tell me about X-metal.",
+                "next": "about_xmetal",
+                "questStart": "main_xmetal_synthesis"
+              },
+              {
+                "text": "I'll check on things later.",
+                "next": "end"
+              }
+            ]
+          },
+          {
+            "id": "about_xmetal",
+            "text": "X-metal is the key to everything. With it, we can build a spacecraft capable of interstellar travel. The synthesis requires three components: exotic matter, energy catalysts, and dimensional harmonics.",
+            "responses": [
+              {
+                "text": "I'll gather the components.",
+                "next": "end",
+                "questUpdate": "main_xmetal_synthesis"
+              }
+            ]
+          }
+        ]
+      },
+      "quests": ["main_xmetal_synthesis"]
+    },
+    {
+      "id": "dorothy_vaneman",
+      "name": "Dorothy Vaneman",
+      "faction": "human_science",
+      "role": "scientist",
+      "mapId": "earth_base",
+      "x": 8,
+      "y": 7,
+      "dialogue": {
+        "greeting": "Richard, we need to be careful with the X-metal. It's more powerful than anything we've encountered.",
+        "dialogue_tree": [
+          {
+            "id": "greet",
+            "text": "Hello Dorothy. How are the readings?",
+            "responses": [
+              {
+                "text": "What are the energy signatures?",
+                "next": "energy_sig",
+                "questStart": "side_research_data"
+              },
+              {
+                "text": "I need to focus on X-metal synthesis.",
+                "next": "end"
+              }
+            ]
+          },
+          {
+            "id": "energy_sig",
+            "text": "The energy signatures are unlike anything in our database. They appear to be artificial—possibly of extraterrestrial origin. We should investigate further.",
+            "responses": [
+              {
+                "text": "I'll investigate.",
+                "next": "end",
+                "questStart": "side_research_data"
+              }
+            ]
+          }
+        ]
+      },
+      "quests": ["side_research_data"]
+    },
+    {
+      "id": "merchant_trader",
+      "name": "Valdek",
+      "faction": "traders",
+      "role": "merchant",
+      "mapId": "earth_base",
+      "x": 10,
+      "y": 8,
+      "dialogue": {
+        "greeting": "Got any credits? I've got tech you won't find elsewhere.",
+        "dialogue_tree": [
+          {
+            "id": "greet",
+            "text": "What are you selling?",
+            "responses": [
+              {
+                "text": "Show me weapons.",
+                "next": "shop_weapons"
+              },
+              {
+                "text": "Any special deals?",
+                "next": "shop_special"
+              },
+              {
+                "text": "Never mind.",
+                "next": "end"
+              }
+            ]
+          },
+          {
+            "id": "shop_weapons",
+            "text": "Got plasma rifles, energy pistols, and some rare DuQuesne-grade gear if you've got the credits.",
+            "responses": [
+              {
+                "text": "I'll be back when I have more credits.",
+                "next": "end"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}
