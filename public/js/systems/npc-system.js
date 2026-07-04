@@ -18,7 +18,10 @@ export class NPCSystem {
     console.log(`📖 Initializing ${npcDefinitions.length} NPCs...`);
 
     for (const npcDef of npcDefinitions) {
-      // Load dialogue if available
+      if (npcDef.dialogue) {
+        this.npcDialogue.set(npcDef.id, npcDef.dialogue);
+      }
+
       try {
         const dialogueResponse = await fetch(`/api/dialogue/${npcDef.id}`);
         if (dialogueResponse.ok) {
@@ -29,7 +32,6 @@ export class NPCSystem {
         console.warn(`⚠️  No dialogue loaded for NPC "${npcDef.name}"`);
       }
 
-      // Initialize NPC state
       this.npcState.set(npcDef.id, {
         hasSpoken: false,
         questsGiven: [],
@@ -42,11 +44,48 @@ export class NPCSystem {
 
   /**
    * Get dialogue for NPC
-   * @param {number} npcId - NPC entity ID
+   * @param {string|number} npcId - NPC definition ID or entity ID
    * @returns {Object} Dialogue data
    */
   getDialogue(npcId) {
-    return this.npcDialogue.get(npcId) || this.getDefaultDialogue();
+    const dialogue = this.npcDialogue.get(npcId) || this.getDefaultDialogue();
+    return this.normalizeDialogue(dialogue);
+  }
+
+  normalizeDialogue(dialogueData) {
+    if (!dialogueData) {
+      return this.getDefaultDialogue();
+    }
+
+    if (dialogueData.options) {
+      return dialogueData;
+    }
+
+    const dialogueTree = dialogueData.dialogue_tree || dialogueData.tree || [];
+    const nodes = {};
+
+    dialogueTree.forEach((node) => {
+      nodes[node.id] = {
+        id: node.id,
+        text: node.text || node.greeting || '',
+        responses: (node.responses || []).map((response) => ({
+          text: response.text,
+          response: response.text,
+          next: response.next,
+          questStart: response.questStart,
+          questUpdate: response.questUpdate
+        }))
+      };
+    });
+
+    const firstNode = dialogueTree[0];
+    const startNodeId = firstNode?.id || 'start';
+
+    return {
+      greeting: dialogueData.greeting || firstNode?.text || 'Greetings, traveler.',
+      currentNodeId: startNodeId,
+      nodes
+    };
   }
 
   /**
@@ -55,10 +94,10 @@ export class NPCSystem {
    */
   getDefaultDialogue() {
     return {
-      greeting: "Greetings, traveler.",
+      greeting: 'Greetings, traveler.',
       options: [
-        { text: "Tell me about yourself", response: "I'm just a humble NPC." },
-        { text: "Goodbye", response: "Safe travels." }
+        { text: 'Tell me about yourself', response: "I'm just a humble NPC." },
+        { text: 'Goodbye', response: 'Safe travels.' }
       ]
     };
   }
@@ -74,15 +113,18 @@ export class NPCSystem {
       return { success: false, message: 'No NPC found' };
     }
 
-    const state = this.npcState.get(npcId);
-    state.hasSpoken = true;
-    state.lastInteractionTime = Date.now();
+    const npcKey = entity.data?.npcId || npcId;
+    const state = this.npcState.get(npcKey) || this.npcState.get(npcId);
+    if (state) {
+      state.hasSpoken = true;
+      state.lastInteractionTime = Date.now();
+    }
 
-    const dialogue = this.getDialogue(npcId);
+    const dialogue = this.getDialogue(npcKey);
 
     return {
       success: true,
-      npcId,
+      npcId: npcKey,
       npcName: entity.name,
       dialogue,
       state
@@ -91,7 +133,7 @@ export class NPCSystem {
 
   /**
    * Get NPC state
-   * @param {number} npcId - NPC entity ID
+   * @param {string|number} npcId - NPC ID
    * @returns {Object} NPC state
    */
   getNPCState(npcId) {
@@ -100,7 +142,7 @@ export class NPCSystem {
 
   /**
    * Update NPC state
-   * @param {number} npcId - NPC entity ID
+   * @param {string|number} npcId - NPC ID
    * @param {Object} updates - State updates
    */
   updateNPCState(npcId, updates) {
@@ -112,7 +154,7 @@ export class NPCSystem {
 
   /**
    * Change NPC mood
-   * @param {number} npcId - NPC entity ID
+   * @param {string|number} npcId - NPC ID
    * @param {string} mood - New mood
    */
   setNPCMood(npcId, mood) {

@@ -8,6 +8,7 @@ export class DialogueUI {
     this.isOpen = false;
     this.currentNPC = null;
     this.currentDialogueNode = null;
+    this.currentDialogueData = null;
     this.onOptionSelected = null;
     this.initializeDOM();
   }
@@ -161,6 +162,8 @@ export class DialogueUI {
    */
   open(npcData) {
     this.currentNPC = npcData;
+    this.currentDialogueData = npcData.dialogue || null;
+    this.currentDialogueNode = null;
     this.isOpen = true;
 
     const container = document.getElementById('dialogue-ui');
@@ -168,26 +171,42 @@ export class DialogueUI {
     container.classList.add('visible');
 
     document.getElementById('dialogue-npc-name').textContent = npcData.npcName;
-    this.displayDialogueNode(npcData.dialogue);
+    this.displayDialogueNode(npcData.dialogue?.currentNodeId || 'start');
   }
 
   /**
    * Display a dialogue node with options
-   * @param {Object} dialogueNode - Dialogue node data
+   * @param {string|Object} dialogueNode - Dialogue node ID or node data
    */
   displayDialogueNode(dialogueNode) {
     const textElement = document.getElementById('dialogue-text');
     const optionsElement = document.getElementById('dialogue-options');
 
-    // Set dialogue text
-    textElement.textContent = dialogueNode.greeting || dialogueNode.text || 'Dialogue unavailable';
+    let node = null;
+    if (typeof dialogueNode === 'string') {
+      node = this.currentDialogueData?.nodes?.[dialogueNode] || null;
+    } else {
+      node = dialogueNode;
+    }
 
-    // Clear options
+    if (!node) {
+      textElement.textContent = this.currentDialogueData?.greeting || 'Dialogue unavailable';
+      optionsElement.innerHTML = '';
+      const closeBtn = document.createElement('button');
+      closeBtn.className = 'dialogue-option';
+      closeBtn.textContent = '[ Close conversation ]';
+      closeBtn.addEventListener('click', () => this.close());
+      optionsElement.appendChild(closeBtn);
+      return;
+    }
+
+    this.currentDialogueNode = node;
+    textElement.textContent = node.text || this.currentDialogueData?.greeting || 'Dialogue unavailable';
+
     optionsElement.innerHTML = '';
 
-    // Add options
-    if (dialogueNode.options && dialogueNode.options.length > 0) {
-      dialogueNode.options.forEach((option, index) => {
+    if (node.responses && node.responses.length > 0) {
+      node.responses.forEach((option, index) => {
         const button = document.createElement('button');
         button.className = 'dialogue-option';
         button.textContent = option.text;
@@ -197,7 +216,6 @@ export class DialogueUI {
         optionsElement.appendChild(button);
       });
     } else {
-      // Default close option
       const closeBtn = document.createElement('button');
       closeBtn.className = 'dialogue-option';
       closeBtn.textContent = '[ Close conversation ]';
@@ -216,23 +234,27 @@ export class DialogueUI {
       this.onOptionSelected(option, index);
     }
 
-    // Show response
+    if (option.next && this.currentDialogueData?.nodes?.[option.next]) {
+      setTimeout(() => {
+        this.displayDialogueNode(option.next);
+      }, 180);
+      return;
+    }
+
     if (option.response) {
       const textElement = document.getElementById('dialogue-text');
       textElement.textContent = option.response;
 
-      // Clear options to show response
       const optionsElement = document.getElementById('dialogue-options');
       optionsElement.innerHTML = '';
 
-      // Add close option
       setTimeout(() => {
         const closeBtn = document.createElement('button');
         closeBtn.className = 'dialogue-option';
         closeBtn.textContent = '[ Continue ]';
         closeBtn.addEventListener('click', () => this.close());
         optionsElement.appendChild(closeBtn);
-      }, 300);
+      }, 220);
     }
   }
 

@@ -30,7 +30,8 @@ export class InteractiveObjectSystem {
       script: config.script || null, // Script to run on interaction
       locked: config.locked || false,
       requiresKey: config.requiresKey || null,
-      spriteId: config.spriteId || `obj_${config.type}_${objectData.state}`
+      spriteId: config.spriteId || `obj_${config.type}_${config.initialState || 'closed'}`,
+      data: config.data || {}
     };
 
     // Create entity for rendering

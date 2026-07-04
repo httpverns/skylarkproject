@@ -50,12 +50,14 @@
       border-top: 2px solid #0f0;
       font-size: 12px;
       display: flex;
-      gap: 30px;
+      gap: 20px;
       justify-content: space-between;
+      align-items: flex-start;
     }
 
     .hud-section {
       flex: 1;
+      min-width: 0;
     }
 
     .hud-label {
@@ -109,6 +111,22 @@
       <div class="hud-section">
         <div class="hud-label">FPS</div>
         <div class="hud-value" id="fps-text">-- fps</div>
+      </div>
+      <div class="hud-section">
+        <div class="hud-label">PLAYER</div>
+        <div class="hud-value" id="player-stats">Loading...</div>
+      </div>
+      <div class="hud-section">
+        <div class="hud-label">QUESTS</div>
+        <div class="hud-value" id="quest-log">Loading...</div>
+      </div>
+      <div class="hud-section">
+        <div class="hud-label">INVENTORY</div>
+        <ul class="hud-value" id="inventory-list" style="margin-left: 12px;"></ul>
+      </div>
+      <div class="hud-section">
+        <div class="hud-label">REPUTATION</div>
+        <div class="hud-value" id="reputation-text">Loading...</div>
       </div>
       <div class="hud-section">
         <div class="hud-hint">
