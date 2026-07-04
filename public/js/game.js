@@ -29,7 +29,9 @@ class GameEngine {
       vy: 0,
       speed: 2.4,
       width: 32,
-      height: 32
+      height: 32,
+      animationState: 'idle',
+      attackTimer: 0
     };
 
     this.map = null;
@@ -72,7 +74,15 @@ class GameEngine {
       wall: null,
       player: null,
       npc: null,
-      object: null
+      object: null,
+      player3d: null,
+      npc3d: null,
+      playerIdle: null,
+      playerRun: null,
+      playerAttack: null,
+      npcIdle: null,
+      npcRun: null,
+      npcAttack: null
     };
     this.particles = [];
     this.effectTime = 0;
@@ -142,7 +152,15 @@ class GameEngine {
       ['wall', '/assets/graphics/wall-tile.png'],
       ['player', '/assets/graphics/player.png'],
       ['npc', '/assets/graphics/npc.png'],
-      ['object', '/assets/graphics/object.png']
+      ['object', '/assets/graphics/object.png'],
+      ['player3d', '/assets/graphics/player-3d.png'],
+      ['npc3d', '/assets/graphics/npc-3d.png'],
+      ['playerIdle', '/assets/graphics/player-idle.png'],
+      ['playerRun', '/assets/graphics/player-run.png'],
+      ['playerAttack', '/assets/graphics/player-attack.png'],
+      ['npcIdle', '/assets/graphics/npc-idle.png'],
+      ['npcRun', '/assets/graphics/npc-run.png'],
+      ['npcAttack', '/assets/graphics/npc-attack.png']
     ];
 
     for (const [key, url] of assetMap) {
@@ -322,7 +340,14 @@ class GameEngine {
 
     if (this.interactRequested) {
       this.interactRequested = false;
+      this.player.attackTimer = 0.25;
       this.handleInteraction();
+    }
+
+    const moving = this.keys.ArrowUp || this.keys.w || this.keys.ArrowDown || this.keys.s || this.keys.ArrowLeft || this.keys.a || this.keys.ArrowRight || this.keys.d;
+
+    if (this.player.attackTimer > 0) {
+      this.player.attackTimer = Math.max(0, this.player.attackTimer - deltaTime / 1000);
     }
 
     if (this.keys.ArrowUp || this.keys.w) {
@@ -351,6 +376,14 @@ class GameEngine {
       if (this.isWalkable(newX, this.player.y)) {
         this.player.x = newX;
       }
+    }
+
+    if (this.player.attackTimer > 0) {
+      this.player.animationState = 'attack';
+    } else if (moving) {
+      this.player.animationState = 'run';
+    } else {
+      this.player.animationState = 'idle';
     }
 
     const screenCenterX = this.canvas.width / 2;
@@ -523,12 +556,20 @@ class GameEngine {
       ctx.fill();
       ctx.restore();
 
-      if (sprite) {
+      if (entity.type === 'npc') {
+        const poseSprite = this.assets.npcIdle || this.assets.npc3d || this.assets.npc || sprite;
         ctx.save();
-        ctx.shadowBlur = 18;
-        ctx.shadowColor = entity.type === 'npc' ? 'rgba(95, 190, 255, 0.32)' : 'rgba(255, 200, 92, 0.25)';
+        ctx.shadowBlur = 22;
+        ctx.shadowColor = 'rgba(95, 190, 255, 0.28)';
         const bob = Math.sin(this.effectTime * 3 + entity.x * 0.8 + entity.y * 0.3) * 1.4;
-        ctx.drawImage(sprite, screen.x + 6, screen.y - 8 + bob, 56, 56);
+        ctx.drawImage(poseSprite, screen.x - 8, screen.y - 24 + bob, 88, 112);
+        ctx.restore();
+      } else if (sprite) {
+        ctx.save();
+        ctx.shadowBlur = 20;
+        ctx.shadowColor = 'rgba(255, 200, 92, 0.25)';
+        const bob = Math.sin(this.effectTime * 3 + entity.x * 0.8 + entity.y * 0.3) * 1.4;
+        ctx.drawImage(sprite, screen.x + 2, screen.y - 16 + bob, 60, 72);
         ctx.restore();
       } else if (entity.type === 'npc') {
         ctx.save();
@@ -561,12 +602,17 @@ class GameEngine {
     ctx.fill();
     ctx.restore();
 
-    if (this.assets.player) {
+    if (this.assets.player3d || this.assets.playerIdle || this.assets.player) {
       ctx.save();
-      ctx.shadowBlur = 24;
+      ctx.shadowBlur = 26;
       ctx.shadowColor = 'rgba(34, 226, 255, 0.34)';
       const bob = Math.sin(this.effectTime * 4.5) * 2.5;
-      ctx.drawImage(this.assets.player, screen.x + 7, screen.y - 10 + bob, 56, 56);
+      const sprite = this.player.animationState === 'attack'
+        ? this.assets.playerAttack || this.assets.playerIdle || this.assets.player3d || this.assets.player
+        : this.player.animationState === 'run'
+          ? this.assets.playerRun || this.assets.playerIdle || this.assets.player3d || this.assets.player
+          : this.assets.playerIdle || this.assets.player3d || this.assets.player;
+      ctx.drawImage(sprite, screen.x - 8, screen.y - 28 + bob, 96, 128);
       ctx.restore();
     } else {
       ctx.save();
